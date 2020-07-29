@@ -63,7 +63,9 @@ function deleteCheck(event) {
 
     // Animation
     todo.classList.add("fall");
+
     removeLocalTodos(todo);
+
     todo.addEventListener("transitionend", function () {
       todo.remove();
     });
@@ -72,17 +74,20 @@ function deleteCheck(event) {
   // Checkmark
   if (item.classList[0] === "complete-btn") {
     const todo = item.parentElement;
+
     todo.classList.toggle("completed");
   }
 }
 
 function filterTodo(event) {
   const todos = todoList.childNodes;
+
   todos.forEach(function (todo) {
     switch (event.target.value) {
       case "all":
         todo.style.display = "flex";
         break;
+
       case "completed":
         if (todo.classList.contains("completed")) {
           todo.style.display = "flex";
@@ -90,6 +95,7 @@ function filterTodo(event) {
           todo.style.display = "none";
         }
         break;
+
       case "uncompleted":
         if (!todo.classList.contains("completed")) {
           todo.style.display = "flex";
@@ -106,6 +112,7 @@ function saveLocalTodos(todo) {
   let todos = checkForLocalTodos();
 
   todos.push(todo);
+
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
